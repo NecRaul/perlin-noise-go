@@ -6,6 +6,7 @@ import (
 	"image/color"
 	"image/png"
 	"os"
+	"time"
 
 	"github.com/aquilax/go-perlin"
 )
@@ -15,6 +16,8 @@ func main() {
 		fmt.Println("Usage: go run main.go <size> <scale> <octaves> <persistence> <lacunarity> <base>")
 		os.Exit(1)
 	}
+
+	start := time.Now()
 
 	size := atoi(os.Args[1])
 	scale := atof(os.Args[2])
@@ -26,6 +29,9 @@ func main() {
 	noise := generateNoise(size, scale, octaves, persistence, lacunarity, base)
 
 	saveImage("noise-sp.png", noise)
+
+	end := time.Now()
+	fmt.Printf("Time: %s\n", end.Sub(start))
 }
 
 func generateNoise(size int, scale, octaves, persistence, lacunarity float64, base int) [][]float64 {

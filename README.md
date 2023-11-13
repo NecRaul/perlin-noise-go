@@ -1,3 +1,3 @@
 # perlin-noise-go
 
-Some examples of generating perlin noise. I'll be using this for my academic paper.
+Some examples of generating perlin noise using Golang. I'll be using this for my academic paper.

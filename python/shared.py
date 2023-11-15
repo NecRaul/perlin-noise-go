@@ -1,4 +1,5 @@
 import os
+import numpy
 from result import Result
 
 
@@ -13,8 +14,8 @@ def read_directory(directory_path):
     for file_name in sorted_file_names:
         if file_name.endswith(".txt"):
             file_path = os.path.join(directory_path, file_name)
-            total_seconds, count = read_file(file_path)
-            result = Result(file_name, total_seconds, count)
+            total_seconds, count, seconds_array = read_file(file_path)
+            result = Result(file_name, total_seconds, count, seconds_array)
             results.append(result)
     return results
 
@@ -22,12 +23,16 @@ def read_directory(directory_path):
 def read_file(file_path):
     total_seconds = 0
     count = 0
+    seconds_list = []
     with open(file_path, "r") as file:
         lines = file.readlines()
         for line in lines:
-            total_seconds += time_to_seconds(line.strip())
+            seconds = time_to_seconds(line.strip())
+            seconds_list.append(seconds)
+            total_seconds += seconds
             count += 1
-    return total_seconds, count
+    seconds_array = numpy.array(seconds_list)
+    return total_seconds, count, seconds_array
 
 
 def time_to_seconds(time_str):

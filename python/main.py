@@ -33,15 +33,14 @@ def main():
             ]
 
             combined_array = numpy.vstack(padded_arrays)
-            plt.figure(figsize=(7, 7))
             for i in reversed(range(combined_array.shape[0])):
                 plt.plot(combined_array[i], label=f"{2**(i+6)}")
 
-            if "mt" and "io" in directory_path:
+            if "mt_io" in directory_path:
                 plt.title("100 executions of multithreaded algorithm (with IO)")
             elif "mt" in directory_path:
                 plt.title("100 executions of multithreaded algorithm (without IO)")
-            elif "st" and "io" in directory_path:
+            elif "st_io" in directory_path:
                 plt.title("100 executions of singlethreaded algorithm (with IO)")
             elif "st" in directory_path:
                 plt.title("100 executions of singlethreaded algorithm (without IO)")

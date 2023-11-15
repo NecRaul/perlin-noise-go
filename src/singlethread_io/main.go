@@ -55,7 +55,7 @@ func saveImage(filename string, noise [][]float64) {
 	img := image.NewGray(image.Rect(0, 0, len(noise), len(noise[0])))
 	for i := range noise {
 		for j := range noise[i] {
-			value := uint8((noise[i][j] + 1) * 127.5) // Map [-1, 1] to [0, 255]
+			value := uint8((noise[i][j] + 1) * 127.5)
 			img.SetGray(i, j, color.Gray{Y: value})
 		}
 	}

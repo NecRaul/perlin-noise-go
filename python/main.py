@@ -18,9 +18,7 @@ def main():
 
         if argument.lower() == "mean":
             for result in results:
-                print(
-                    f"Mean average in seconds for size {result.name}: {result.average}"
-                )
+                print(f"Mean average for size {result.name}: {result.average}s")
         elif argument.lower() == "plot":
             max_length = max(len(result.seconds_array) for result in results)
 

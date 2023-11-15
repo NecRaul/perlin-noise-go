@@ -1,6 +1,7 @@
 import sys
 import os
 import numpy
+import matplotlib.pyplot as plt
 import shared
 
 
@@ -34,8 +35,23 @@ def main():
             ]
 
             combined_array = numpy.vstack(padded_arrays)
+            plt.figure(figsize=(7, 7))
+            for i in reversed(range(combined_array.shape[0])):
+                plt.plot(combined_array[i], label=f"{2**(i+6)}")
 
-            # TODO Add matploblib functionality
+            if "mt" and "io" in directory_path:
+                plt.title("100 executions of multithreaded algorithm (with IO)")
+            elif "mt" in directory_path:
+                plt.title("100 executions of multithreaded algorithm (without IO)")
+            elif "st" and "io" in directory_path:
+                plt.title("100 executions of singlethreaded algorithm (with IO)")
+            elif "st" in directory_path:
+                plt.title("100 executions of singlethreaded algorithm (without IO)")
+
+            plt.xlabel("Executions")
+            plt.ylabel("Seconds")
+            plt.legend()
+            plt.show()
         else:
             print("Incorrect argument! Argument should either be mean or plot!")
 
